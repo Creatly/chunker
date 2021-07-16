@@ -21,7 +21,7 @@ const (
 	// paste school domain.
 	_referer = "http://localhost:8000/"
 	// file you want to upload
-	_filename = "test.MOV"
+	_filename = "earth.mp4"
 )
 
 func main() {
@@ -46,10 +46,6 @@ func main() {
 	finish := false
 
 	for {
-		if finish {
-			break
-		}
-
 		file.Seek(offset, 0)
 
 		_, err := reader.Read(buf)
@@ -59,6 +55,10 @@ func main() {
 			} else {
 				log.Fatal(err)
 			}
+		}
+
+		if finish {
+			break
 		}
 
 		if err := upload(_url, _token, file.Name(), buf, offset, fileSize); err != nil {
